@@ -1,0 +1,132 @@
+.collection-item{
+     flex-grow:1;
+}
+
+
+.ais-Hits-item {
+display:flex;
+border:none;
+box-shadow: none;
+padding:0;
+}
+
+.ais-Pagination-list {
+     justify-content: center;
+}
+
+.ais-RefinementList-list {
+     display: flex;
+    flex-wrap: wrap;
+}
+
+.ais-RefinementList-item {
+          display: block;
+          font-size: .675rem;
+          line-height: 1.75rem;
+          flex-grow: 1;
+          max-width: 50%;
+}
+
+.ais-RefinementList-item {
+     max-width: calc(50% - 0.25rem);
+     width: calc(50% - 0.25rem);
+ }
+
+.ais-RefinementList-showMore {
+     background: rgba(0,0,0,0);
+     margin-top: 1rem;
+     font-size: 12px;
+     font-weight: 500;
+     border: 1px solid #BDC4D7;
+     color: #031b4e;
+     letter-spacing: 1.2px;
+     user-select: none;
+ }
+
+.ais-RefinementList-showMore:hover {
+     background: whitesmoke;
+     transform: translateY(-1px);
+}
+
+.ais-Pagination-item--selected .ais-Pagination-link {
+     background: #055eff;
+     border-color: #055eff;
+     box-shadow:none;
+     color: #fff!important;
+ }
+
+ .ais-Pagination-item+.ais-Pagination-item>.ais-Pagination-link {
+     padding: .3rem .6rem;
+     display: block;
+     border: 1px solid #e4e8ec;
+     border-radius: 5px;
+     -webkit-transition: background-color .2s ease-out;
+     transition: background-color .2s ease-out;
+     color:#055eff;
+ }
+ 
+
+ .ais-Pagination-item+.ais-Pagination-item {
+     margin-left: .3rem;
+ }
+
+ .ais-Pagination-item--disabled .ais-Pagination-link {
+     opacity: .6;
+     cursor: not-allowed;
+     color: #a5abc4;
+ }
+
+ .ais-Pagination-item--selected .ais-Pagination-link:hover, .ais-Pagination-item--selected .ais-Pagination-link:focus {
+     color: #fff;
+     background: #055eff;
+     border-color: #055eff;
+ }
+
+ .ais-Pagination-link:hover {
+     background-color: #f8f8f8;
+ }
+
+ .ais-ClearRefinements-button {
+    background: rgba(0,0,0,0);
+    margin-top: 1rem;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #BDC4D7;
+    color: #031b4e;
+    letter-spacing: 1.2px;
+    user-select: none;
+ }
+
+ .ais-ClearRefinements-button:disabled[disabled], .ais-ClearRefinements-button:hover{
+      background-image: none;
+ }
+
+ .ais-RefinementList-item--selected>div>.filter{
+      background-color: #f0f6ff;
+      border-color:#055eff;
+ }
+.ais-SearchBox-input{
+     border: 1px solid #e4e8ec;
+     border-radius: 5px;
+     box-shadow: none;
+     font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+
+@media screen and (max-width: 991px) {
+
+}
+
+@media screen and (max-width: 767px) {
+ 
+}
+
+@media screen and (max-width: 479px) {
+   
+}
+
+@media (min-width: 768px) {
+   
+}
+
