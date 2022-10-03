@@ -90,7 +90,7 @@ search.addWidgets([
                 alt=""
                 class="image-7"
               />
-              <div><div class="text-block-8">{{Location}}</div></div>
+              <div><div class="text-block-8">{{#helpers.highlight}}{ "attribute": "Location" }{{/helpers.highlight}}</div></div>
             </div>
             <div class="job-tag">
               <img
@@ -117,8 +117,6 @@ search.addWidgets([
           </div>
           <div class="apply-button-wrapper">
             <a href="#" class="apply-button">Bewerben</a>
-            <div class="category-holder w-embed">
-            </div>
           </div>
         </div>
       </div>
@@ -126,12 +124,6 @@ search.addWidgets([
 `,
     },
   }),
-  // Adding the refinementListDropdown widget on the `type` facet
-  /*refinementListDropdown({
-    container: "#remote-list", // the CSS Selector of the DOM element inside which the widget is inserted.
-    attribute: "Remote Work", // the name of the attribute in the records.
-    searchable: false, // whether to add a search input to let the user search for more facet values.
-  }),*/
 
   instantsearch.widgets.configure({
     hitsPerPage: 10,
@@ -141,14 +133,65 @@ search.addWidgets([
   })(instantsearch.widgets.refinementList)({
     container: "#salary-list",
     attribute: "Gehaltsangabe",
+    templates: {
+      item: filterButtonTemplate(),
+    },
   }),
   instantsearch.widgets.refinementList({
     container: "#remote-list",
     attribute: "Remote Work",
+    templates: {
+      item: filterButtonTemplate(),
+    },
   }),
   instantsearch.widgets.refinementList({
     container: "#english-level-list",
     attribute: "Englisch-Level",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: "#remote-list",
+    attribute: "Remote Work",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: "#employment-list",
+    attribute: "Job-Bereich",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: "#experience-list",
+    attribute: "Berufserfahrung",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: "#company-size-list",
+    attribute: "Unternehmensgröße",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: "#devision-list",
+    attribute: "SEO-Bereich",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),
+  instantsearch.widgets.refinementList({
+    container: "#tools-list",
+    attribute: "Tools",
+    templates: {
+      item: filterButtonTemplate(),
+    },
   }),
   instantsearch.widgets.refinementList({
     container: "#skills-list",

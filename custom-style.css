@@ -1,7 +1,18 @@
+
+.apply-button-wrapper{
+     display:none;
+}
+
+.button-filter {
+     margin-bottom: 20px;
+ }
+.ais-Panel {
+     margin-bottom:0px;
+}
+
 .collection-item{
      flex-grow:1;
 }
-
 
 .ais-Hits-item {
 display:flex;
