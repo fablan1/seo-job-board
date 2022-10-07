@@ -3,6 +3,10 @@
      display:none;
 }
 
+.company-detail-component-switcher-item:not(:first-of-type) {
+     margin-left: 3rem;
+ }
+
 .button-filter {
      margin-bottom: 20px;
  }
@@ -142,3 +146,13 @@ position: relative;
    
 }
 
+
+/* Job Details Page */ 
+/*.job-detail-summary-list li:not(:first-of-type):before */
+.job-detail-summary-list li:before {
+     content: url(https://uploads-ssl.webflow.com/631107a8174c7590965ee1ef/633acbce3e2ee807c54405a9_mid_dot.svg);
+     position: relative;
+     top: 5px;
+     font-size: 24px;
+     margin-right: .5rem;
+ }

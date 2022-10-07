@@ -1,4 +1,5 @@
 const { algoliasearch, instantsearch } = window;
+import searchRouting from "./search-routing.js";
 
 const searchClient = algoliasearch(
   "A1CQMMK9AR",
@@ -6,8 +7,9 @@ const searchClient = algoliasearch(
 );
 
 const search = instantsearch({
-  indexName: "seo-jobs",
+  indexName: "seo_jobs",
   searchClient,
+  routing: searchRouting,
 });
 
 const filterButtonTemplate = (url) => {
