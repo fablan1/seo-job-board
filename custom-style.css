@@ -3,8 +3,57 @@
      display:none;
 }
 
+.nl-submit-button {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+	transform: scale(1);
+	animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
+
 .company-detail-component-switcher-item:not(:first-of-type) {
      margin-left: 3rem;
+ }
+
+ .company-detail__basic-tag:not(:first-of-type) {
+     margin-left: 2.5rem;
+ }
+
+ .company-detail-page-inner:not(:first-of-type) {
+     margin-top: 30px;
+ }
+
+ .company-breadcrumb-list-breadcrumbs .breadcrumb:not(:last-of-type):after {
+     content: ">";
+     margin-left: 12px;
+     font-size: 12px;
+     font-weight: 600;
+     color: #7d97ad;
+     margin-top: 0;
+     font-family: 'Open Sans';
+ }
+ 
+ .company-detail-page-inner:last-of-type {
+     margin-bottom: 30px;
+ }
+
+ .extra-info-item::before {
+          content: "\30fb";
  }
 
 .button-filter {
