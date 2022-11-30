@@ -1,5 +1,5 @@
 const { algoliasearch, instantsearch } = window;
-import searchRouting from "./search-routing.js";
+//import searchRouting from "./search-routingCompany.js";
 
 const searchClient = algoliasearch(
   "A1CQMMK9AR",
@@ -7,9 +7,9 @@ const searchClient = algoliasearch(
 );
 
 const search = instantsearch({
-  indexName: "seo_jobs",
+  indexName: "seo_companies",
   searchClient,
-  routing: searchRouting,
+  //routing: searchRouting,
 });
 
 const filterButtonTemplate = (url) => {
@@ -22,19 +22,6 @@ const filterButtonTemplate = (url) => {
  </a>
 </div>
 `;
-};
-
-const showMore = (name) => {
-  const showMoreT = (data) => {
-    if (data.isShowingMore) {
-      return `Weniger ${name}`;
-    }
-    return `Mehr ${name}`;
-    /* return `<span
-      >${data.isShowingMore ? "Show fsdfasd" : "Show asdf"}</span
-    >`;*/
-  };
-  return showMoreT;
 };
 
 const clearFilter = () => {
@@ -53,7 +40,7 @@ const clearFilter = () => {
 search.addWidgets([
   instantsearch.widgets.searchBox({
     container: "#searchbox",
-    placeholder: "Ort, Stellenbezeichnung",
+    placeholder: "Ort, Unternehmensname",
   }),
   instantsearch.widgets.stats({
     container: "#stats",
@@ -79,7 +66,7 @@ search.addWidgets([
       item: `
       <div role="listitem" class="collection-item job-collection-item w-dyn-item">
       <a
-        href="https://www.google.de"
+        href="{{companySlug}}"
         target="_blank"
         class="job-item-mobile-link"
       ></a>
@@ -87,10 +74,10 @@ search.addWidgets([
         <div class="job-item-data">
           <div class="job-item-company-logo">
             <a
-              href="http://www.company.de"
+              href="{{companySlug}}"
               class="job-item-company-link w-inline-block"
               ><img
-                src="https://uploads-ssl.webflow.com/631107a8174c7590965ee1ef/6319dd6c28152085e7e151b2_fragcolor.png"
+                src="{{companyLogo.url}}"
                 loading="lazy"
                 alt=""
                 class="image-6"
@@ -99,12 +86,12 @@ search.addWidgets([
           </div>
           <div class="job-item-main-data">
             <div class="job-item-title-box">
-              <a href="https://www.google.de" class="job-item-title">{{#helpers.highlight}}{ "attribute": "Job-Title" }{{/helpers.highlight}}</a
+              <a href="{{companySlug}}" class="job-item-title">{{#helpers.highlight}}{ "attribute": "companyName" }{{/helpers.highlight}}</a
               >
             </div>
             <div class="job-item-company-box">
               <div class="job-item-company-name">
-                <div class="text-block-7">{{Company-Name}}</div>
+                <div class="text-block-7">{{companyName}}</div>
               </div>
             </div>
           </div>
@@ -112,13 +99,13 @@ search.addWidgets([
         <div class="job-item-list-wrapper">
           <ul role="list" class="job-item-list">
             <li class="top-skill">
-              <div class="top-skill-text">{{Top-Skill_1}}</div>
+              <div class="top-skill-text">{{companyJobBenefit1}}</div>
             </li>
             <li class="top-skill">
-              <div class="top-skill-text">{{Top-Skill_2}}</div>
+              <div class="top-skill-text">{{companyJobBenefit2}}</div>
             </li>
             <li class="top-skill">
-              <div class="top-skill-text">{{Top-Skill_3}}</div>
+              <div class="top-skill-text">{{companyJobBenefit3}}</div>
             </li>
           </ul>
         </div>
@@ -131,7 +118,7 @@ search.addWidgets([
                 alt=""
                 class="image-7"
               />
-              <div><div class="text-block-8">{{#helpers.highlight}}{ "attribute": "Location" }{{/helpers.highlight}}</div></div>
+              <div><div class="text-block-8">{{#helpers.highlight}}{ "attribute": "headOffice" }{{/helpers.highlight}}</div></div>
             </div>
             <div class="job-tag">
               <img
@@ -141,7 +128,7 @@ search.addWidgets([
                 class="image-7"
               />
               <div class="div-block-7">
-                <div class="text-block-8">{{Gehaltsangabe}}</div>
+                <div class="text-block-8">{{companyIndustry}}</div>
               </div>
             </div>
             <div class="job-tag">
@@ -152,12 +139,12 @@ search.addWidgets([
                 class="image-7"
               />
               <div class="div-block-7">
-                <div class="text-block-8">{{Remote Work}}</div>
+                <div class="text-block-8">{{companyEmployees}}</div>
               </div>
             </div>
           </div>
           <div class="apply-button-wrapper">
-            <a href="{{slug}}" class="apply-button">Bewerben</a>
+            <a href="{{companySlug}}" class="apply-button">Zum Unternehmen</a>
           </div>
         </div>
       </div>
@@ -172,81 +159,24 @@ search.addWidgets([
   instantsearch.widgets.panel({
     // templates: { header: "Gehalt" },
   })(instantsearch.widgets.refinementList)({
-    container: "#salary-list",
-    attribute: "Gehaltsangabe",
+    container: "#companyIndustry",
+    attribute: "companyIndustry",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#remote-list",
-    attribute: "Remote Work",
+    container: "#companyEmployees",
+    attribute: "companyEmployees",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#english-level-list",
-    attribute: "Englisch-Level",
+    container: "#companySEOtools",
+    attribute: "companySEOtools",
     templates: {
       item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#remote-list",
-    attribute: "Remote Work",
-    templates: {
-      item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#employment-list",
-    attribute: "Job-Bereich",
-    templates: {
-      item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#experience-list",
-    attribute: "Berufserfahrung",
-    templates: {
-      item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#company-size-list",
-    attribute: "Unternehmensgröße",
-    templates: {
-      item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#devision-list",
-    attribute: "SEO-Bereich",
-    templates: {
-      item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#tools-list",
-    attribute: "Tools",
-    showMore: true,
-    limit: 6,
-    showMoreLimit: 20,
-    templates: {
-      item: filterButtonTemplate(),
-      showMoreText: showMore("Tools"),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#skills-list",
-    attribute: "Skills",
-    showMore: true,
-    limit: 6,
-    showMoreLimit: 20,
-    templates: {
-      item: filterButtonTemplate(),
-      showMoreText: showMore("Skills"),
     },
   }),
   instantsearch.widgets.pagination({
