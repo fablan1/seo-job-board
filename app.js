@@ -79,7 +79,7 @@ search.addWidgets([
       item: `
       <div role="listitem" class="collection-item job-collection-item w-dyn-item">
       <a
-        href="https://www.google.de"
+        href="{{slug}}"
         target="_blank"
         class="job-item-mobile-link"
       ></a>
@@ -87,10 +87,10 @@ search.addWidgets([
         <div class="job-item-data">
           <div class="job-item-company-logo">
             <a
-              href="http://www.company.de"
+              href="{{slug}}"
               class="job-item-company-link w-inline-block"
               ><img
-                src="https://uploads-ssl.webflow.com/631107a8174c7590965ee1ef/6319dd6c28152085e7e151b2_fragcolor.png"
+                src="{{companyLogoURL.url}}"
                 loading="lazy"
                 alt=""
                 class="image-6"
@@ -99,12 +99,12 @@ search.addWidgets([
           </div>
           <div class="job-item-main-data">
             <div class="job-item-title-box">
-              <a href="https://www.google.de" class="job-item-title">{{#helpers.highlight}}{ "attribute": "Job-Title" }{{/helpers.highlight}}</a
+              <a href="{{slug}}" class="job-item-title">{{#helpers.highlight}}{ "attribute": "jobTitle" }{{/helpers.highlight}}</a
               >
             </div>
             <div class="job-item-company-box">
               <div class="job-item-company-name">
-                <div class="text-block-7">{{Company-Name}}</div>
+                <div class="text-block-7">{{companyName}}</div>
               </div>
             </div>
           </div>
@@ -112,13 +112,13 @@ search.addWidgets([
         <div class="job-item-list-wrapper">
           <ul role="list" class="job-item-list">
             <li class="top-skill">
-              <div class="top-skill-text">{{Top-Skill_1}}</div>
+              <div class="top-skill-text">{{topSkill1}}</div>
             </li>
             <li class="top-skill">
-              <div class="top-skill-text">{{Top-Skill_2}}</div>
+              <div class="top-skill-text">{{topSkill2}}</div>
             </li>
             <li class="top-skill">
-              <div class="top-skill-text">{{Top-Skill_3}}</div>
+              <div class="top-skill-text">{{topSkill3}}</div>
             </li>
           </ul>
         </div>
@@ -131,7 +131,7 @@ search.addWidgets([
                 alt=""
                 class="image-7"
               />
-              <div><div class="text-block-8">{{#helpers.highlight}}{ "attribute": "Location" }{{/helpers.highlight}}</div></div>
+              <div><div class="text-block-8">{{#helpers.highlight}}{ "attribute": "location" }{{/helpers.highlight}}</div></div>
             </div>
             <div class="job-tag">
               <img
@@ -141,7 +141,7 @@ search.addWidgets([
                 class="image-7"
               />
               <div class="div-block-7">
-                <div class="text-block-8">{{Gehaltsangabe}}</div>
+                <div class="text-block-8">{{salary}}</div>
               </div>
             </div>
             <div class="job-tag">
@@ -152,7 +152,7 @@ search.addWidgets([
                 class="image-7"
               />
               <div class="div-block-7">
-                <div class="text-block-8">{{Remote Work}}</div>
+                <div class="text-block-8">{{remoteWork}}</div>
               </div>
             </div>
           </div>
@@ -172,64 +172,65 @@ search.addWidgets([
   instantsearch.widgets.panel({
     // templates: { header: "Gehalt" },
   })(instantsearch.widgets.refinementList)({
-    container: "#salary-list",
-    attribute: "Gehaltsangabe",
+    container: "#salary",
+    attribute: "salary",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#remote-list",
-    attribute: "Remote Work",
+    container: "#remoteWork",
+    attribute: "remoteWork",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#english-level-list",
-    attribute: "Englisch-Level",
+    container: "#englishLevel",
+    attribute: "englishLevel",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#remote-list",
-    attribute: "Remote Work",
+    container: "#seoDepartment",
+    attribute: "seoDepartment",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),
+  /* Agentur, Inhouse, Beratung?
+  instantsearch.widgets.refinementList({
+    container: "#xxx,
+    attribute: "xxx",
+    templates: {
+      item: filterButtonTemplate(),
+    },
+  }),*/
+  instantsearch.widgets.refinementList({
+    container: "#jobExperience",
+    attribute: "jobExperience",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#employment-list",
-    attribute: "Job-Bereich",
+    container: "#companySize",
+    attribute: "companySize",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#experience-list",
-    attribute: "Berufserfahrung",
+    container: "#jobLimit",
+    attribute: "jobLimit",
     templates: {
       item: filterButtonTemplate(),
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#company-size-list",
-    attribute: "Unternehmensgröße",
-    templates: {
-      item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#devision-list",
-    attribute: "SEO-Bereich",
-    templates: {
-      item: filterButtonTemplate(),
-    },
-  }),
-  instantsearch.widgets.refinementList({
-    container: "#tools-list",
-    attribute: "Tools",
+    container: "#seoTools",
+    attribute: "seoTools",
     showMore: true,
     limit: 6,
     showMoreLimit: 20,
@@ -239,8 +240,8 @@ search.addWidgets([
     },
   }),
   instantsearch.widgets.refinementList({
-    container: "#skills-list",
-    attribute: "Skills",
+    container: "#skills",
+    attribute: "skills",
     showMore: true,
     limit: 6,
     showMoreLimit: 20,
