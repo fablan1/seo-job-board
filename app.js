@@ -135,7 +135,7 @@ search.addWidgets([
             </div>
             <div class="job-tag">
               <img
-                src="https://uploads-ssl.webflow.com/631107a8174c7590965ee1ef/6319fe4f2a57943cf612e0e5_person-gray.svg"
+                src="https://uploads-ssl.webflow.com/631107a8174c7590965ee1ef/63528b6591c1165e0e739dc6_salary.svg"
                 loading="lazy"
                 alt=""
                 class="image-7"
@@ -146,7 +146,7 @@ search.addWidgets([
             </div>
             <div class="job-tag">
               <img
-                src="https://uploads-ssl.webflow.com/631107a8174c7590965ee1ef/6319fe4f2a57943cf612e0e5_person-gray.svg"
+                src="https://uploads-ssl.webflow.com/631107a8174c7590965ee1ef/635286b453e8c524906d8603_svg-world.svg"
                 loading="lazy"
                 alt=""
                 class="image-7"

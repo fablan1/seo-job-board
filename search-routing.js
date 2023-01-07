@@ -65,17 +65,20 @@ const router = instantsearch.routers.history({
     if (routeState.brands) {
       queryParameters.brands = routeState.brands.map(encodeURIComponent);
     }
+    if (routeState.remote) {
+      queryParameters.remote = routeState.remote.map(encodeURIComponent);
+    }
 
     const queryString = qsModule.stringify(queryParameters, {
       addQueryPrefix: true,
       arrayFormat: "repeat",
     });
 
-    return `${baseUrl}job-search/${categoryPath}${queryString}`;
+    return `${baseUrl}job-suche${categoryPath}${queryString}`;
   },
 
   parseURL({ qsModule, location }) {
-    const pathnameMatches = location.pathname.match(/job-search\/(.*?)\/?$/);
+    const pathnameMatches = location.pathname.match(/job-suche\/(.*?)\/?$/);
     const category = getCategoryName(
       (pathnameMatches && pathnameMatches[1]) || ""
     );
@@ -83,21 +86,25 @@ const router = instantsearch.routers.history({
       query = "",
       page,
       brands = [],
+      remote = [],
     } = qsModule.parse(location.search.slice(1));
     // `qs` does not return an array when there's a single value.
     const allBrands = Array.isArray(brands) ? brands : [brands].filter(Boolean);
+    const allRemote = Array.isArray(remote) ? remote : [remote].filter(Boolean);
 
     return {
       query: decodeURIComponent(query),
       page,
       brands: allBrands.map(decodeURIComponent),
       category,
+      remote: allRemote.map(decodeURIComponent),
     };
   },
 });
 
 const stateMapping = {
   stateToRoute(uiState) {
+    //console.log(uiState);
     // refer to uiState docs for details: https://www.algolia.com/doc/api-reference/widgets/ui-state/js/
     return {
       query: uiState.seo_jobs.query,
@@ -105,12 +112,16 @@ const stateMapping = {
       brands:
         uiState.seo_jobs.refinementList &&
         uiState.seo_jobs.refinementList.brand,
+      remote:
+        uiState.seo_jobs.refinementList &&
+        uiState.seo_jobs.refinementList.remoteWork,
       category: uiState.seo_jobs.menu && uiState.seo_jobs.menu.categories,
     };
   },
 
   routeToState(routeState) {
     // refer to uiState docs for details: https://www.algolia.com/doc/api-reference/widgets/ui-state/js/
+    console.log(routeState);
     return {
       // eslint-disable-next-line camelcase
       seo_jobs: {
@@ -121,6 +132,7 @@ const stateMapping = {
         },
         refinementList: {
           brand: routeState.brands,
+          remoteWork: routeState.remote,
         },
       },
     };
